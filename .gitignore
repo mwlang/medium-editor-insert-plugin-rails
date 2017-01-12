@@ -17,5 +17,3 @@ test/version_tmp
 tmp
 .idea/
 .DS*
-bower_components/*
-bower.json
