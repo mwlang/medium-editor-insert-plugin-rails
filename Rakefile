@@ -3,11 +3,15 @@ require 'bundler/gem_tasks'
 namespace :bower do
   desc "updates javascripts from bower package manager"
   task :update do
-    puts `bower install medium-editor-insert-plugin --save`
+    puts `bower install --save medium-editor medium-editor-insert-plugin`
   end
 
   desc "vendors javascripts and stylesheets for rails assets pipeline"
   task :vendor do
+    copy_javascript "bower_components/medium-editor/dist/js/medium-editor.js"
+    copy_stylesheet "bower_components/medium-editor/dist/css/medium-editor.css"
+    copy_stylesheet "bower_components/medium-editor/dist/css/themes/flat.css"
+
     copy_javascript "bower_components/blueimp-canvas-to-blob/js/canvas-to-blob.js"
     copy_javascript "bower_components/blueimp-tmpl/js/tmpl.js"
     copy_javascript "bower_components/handlebars/handlebars.runtime.js"
