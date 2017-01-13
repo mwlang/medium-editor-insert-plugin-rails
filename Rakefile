@@ -1,48 +1,34 @@
 require 'bundler/gem_tasks'
 
-namespace :bower do
-  desc "updates javascripts from bower package manager"
+namespace :insert_plugin do
+  task :install do
+    puts `rake insert_plugin:update`
+    puts `rake insert_plugin:vendor`
+  end
+
   task :update do
-    puts `bower install medium-editor-insert-plugin --save`
+    puts `bower install medium-editor-insert-plugin components-font-awesome --save`
   end
 
-  desc "vendors javascripts and stylesheets for rails assets pipeline"
   task :vendor do
-    copy_javascript "bower_components/blueimp-canvas-to-blob/js/canvas-to-blob.js"
-    copy_javascript "bower_components/blueimp-tmpl/js/tmpl.js"
-    copy_javascript "bower_components/handlebars/handlebars.runtime.js"
-    copy_javascript "bower_components/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.js"
-    copy_stylesheet "bower_components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin-frontend.css"
-    copy_stylesheet "bower_components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.css"
-    copy_javascript "bower_components/blueimp-load-image/js/load-image.js"
-    copy_javascript "bower_components/blueimp-load-image/js/load-image-orientation.js"
-    copy_javascript "bower_components/blueimp-load-image/js/load-image-meta.js"
-    copy_javascript "bower_components/blueimp-load-image/js/load-image-exif.js"
-    copy_javascript "bower_components/blueimp-load-image/js/load-image-exif-map.js"
-    copy_javascript "bower_components/blueimp-file-upload/js/vendor/jquery.ui.widget.js"
-    copy_javascript "bower_components/blueimp-file-upload/js/cors/jquery.postmessage-transport.js"
-    copy_javascript "bower_components/blueimp-file-upload/js/cors/jquery.xdr-transport.js"
-    copy_javascript "bower_components/blueimp-file-upload/js/jquery.fileupload.js"
-    copy_javascript "bower_components/blueimp-file-upload/js/jquery.iframe-transport.js"
-    copy_javascript "bower_components/blueimp-file-upload/js/jquery.fileupload-video.js"
-    copy_javascript "bower_components/blueimp-file-upload/js/jquery.fileupload-validate.js"
-    copy_javascript "bower_components/blueimp-file-upload/js/jquery.fileupload-ui.js"
-    copy_javascript "bower_components/blueimp-file-upload/js/jquery.fileupload-process.js"
-    copy_javascript "bower_components/blueimp-file-upload/js/jquery.fileupload-jquery-ui.js"
-    copy_javascript "bower_components/blueimp-file-upload/js/jquery.fileupload-image.js"
-    copy_javascript "bower_components/blueimp-file-upload/js/jquery.fileupload-audio.js"
-    copy_javascript "bower_components/blueimp-file-upload/js/jquery.fileupload-angular.js"
+    copy_asset "bower_components/handlebars/handlebars.runtime.min.js", "handlebars/handlebars.runtime.min.js"
+    copy_asset "bower_components/jquery-sortable/source/js/jquery-sortable-min.js", "jquery-sortable/jquery-sortable-min.js"
+    copy_asset "bower_components/blueimp-file-upload/js/vendor/jquery.ui.widget.js", "blueimp-file-upload/jquery.ui.widget.js"
+    copy_asset "bower_components/blueimp-file-upload/js/jquery.iframe-transport.js", "blueimp-file-upload/jquery.iframe-transport.js"
+    copy_asset "bower_components/blueimp-file-upload/js/jquery.fileupload.js", "blueimp-file-upload/jquery.fileupload.js"
+    copy_asset "bower_components/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.min.js", "medium-editor-insert-plugin/medium-editor-insert-plugin.min.js"
+
+    copy_asset "bower_components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.min.css", "medium-editor-insert-plugin/medium-editor-insert-plugin.min.css"
+
+    copy_asset "bower_components/components-font-awesome/css/font-awesome.min.css", "components-font-awesome/css/font-awesome.min.css"
+    FileUtils.cp_r "bower_components/components-font-awesome/fonts", "vendor/assets/stylesheets/components-font-awesome"
   end
 end
 
-def copy_javascript filename
-  rel_filename = File.basename(filename)
-  puts "vendoring " + rel_filename
-  FileUtils.cp filename, File.join("vendor/assets/javascripts", rel_filename)
-end
-
-def copy_stylesheet filename
-  rel_filename = File.basename(filename)
-  puts "vendoring " + rel_filename
-  FileUtils.cp filename, File.join("vendor/assets/stylesheets", rel_filename)
+def copy_asset filename, rel_filename=nil
+  rel_filename = File.basename(filename) unless rel_filename
+  folder = rel_filename.downcase.include?('.css') ? 'stylesheets' : 'javascripts'
+  puts "vendoring " + rel_filename + " to " + folder
+  FileUtils::mkdir_p "vendor/assets/#{folder}/#{File.dirname(rel_filename)}"
+  FileUtils.cp filename, File.join("vendor/assets/#{folder}", rel_filename)
 end
