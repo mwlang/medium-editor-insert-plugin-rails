@@ -1,28 +1,3 @@
-// require jquery.ui.widget
-// require jquery.iframe-transport
-// require jquery.fileupload
-// require jquery.fileupload-process
-// require jquery.fileupload-ui
-// require jquery.fileupload-jquery-ui
-// require jquery.fileupload-image
-// require jquery.fileupload-video
-// require jquery.fileupload-validate
-// require jquery.fileupload-audio
-// require jquery-sortable
-// require jquery.postmessage-transport
-// require jquery.xdr-transport
-// require canvas-to-blob
-// require handlebars.runtime
-// require load-image
-// require load-image-meta
-// require load-image-exif
-// require load-image-exif-map
-// require load-image-orientation
-// require medium-editor-insert-plugin
-
-// require jquery/dist/jquery.min
-// require medium-editor/dist/js/medium-editor
-
 //= require handlebars/handlebars.runtime.min
 //= require jquery-sortable/jquery-sortable-min
 //= require blueimp-file-upload/jquery.ui.widget
