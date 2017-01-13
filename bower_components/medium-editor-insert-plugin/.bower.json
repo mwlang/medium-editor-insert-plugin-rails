@@ -50,7 +50,7 @@
     "commit": "885d357b2edaf9175ac022ed411c8aa8f6fe550c"
   },
   "_source": "https://github.com/orthes/medium-editor-insert-plugin.git",
-  "_target": "^2.4.0",
+  "_target": "~2.4.0",
   "_originalSource": "medium-editor-insert-plugin",
   "_direct": true
 }

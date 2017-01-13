@@ -11,6 +11,7 @@ The latest version of Medium Editor bundled by this gem is [v2.4.0](https://gith
 Include **medium-editor-insert-plugin-rails** in your Rails project's Gemfile:
 
 ```ruby
+gem 'medium-editor-rails'
 gem 'medium-editor-insert-plugin-rails'
 ```
 
@@ -26,15 +27,17 @@ Include javascript file in **app/assets/javascripts/application.js**:
 
 ```javascript
 //= require medium-editor
-//= require medium-editor-insert-plugin-all
+//= require medium-editor-insert-plugin
 ```
 
-Include stylesheet file in **app/assets/stylesheets/application.scss**:
+Include stylesheet file in **app/assets/stylesheets/application.css**:
 
-```scss
-@import 'medium-editor/medium-editor';
-@import 'medium-editor/themes/bootstrap';
-@import 'medium-editor-insert-plugin'
+```css
+/*
+*= require medium-editor/medium-editor
+*= require medium-editor/themes/flat
+*= require medium-editor-insert-plugin
+*/
 ```
 
 ## Using Medium Editor with Rails
@@ -45,21 +48,21 @@ You need to initialize Medium Editor with any selector of div, example:
 <div class="editable"></div>
 
 <script>
-  var editor = new MediumEditor('.editable', {
-    // options go here
-  });
+  $(document).ready(function(){
+    var editor = new MediumEditor('.editable', {
+      // options go here
+    });
 
-  $(function () {
-      $('.editable').mediumInsert({
-          editor: editor
-      });
+    $('.editable').mediumInsert({
+      editor: editor
+    });
   });
 </script>
 ```
 
 ## Contributing
 
-1. Fork it ( http://github.com/marjinal1st/medium-editor-insert-plugin-rails/fork )
+1. Fork it ( https://github.com/mwlang/medium-editor-insert-plugin-rails/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
