@@ -27,15 +27,17 @@ Include javascript file in **app/assets/javascripts/application.js**:
 
 ```javascript
 //= require medium-editor
-//= require medium-editor-insert-plugin-all
+//= require medium-editor-insert-plugin
 ```
 
 Include stylesheet file in **app/assets/stylesheets/application.css**:
 
 ```css
+/*
 *= require medium-editor/medium-editor
 *= require medium-editor/themes/flat
 *= require medium-editor-insert-plugin
+*/
 ```
 
 ## Using Medium Editor with Rails
@@ -46,14 +48,14 @@ You need to initialize Medium Editor with any selector of div, example:
 <div class="editable"></div>
 
 <script>
-  var editor = new MediumEditor('.editable', {
-    // options go here
-  });
+  $(document).ready(function(){
+    var editor = new MediumEditor('.editable', {
+      // options go here
+    });
 
-  $(function () {
-      $('.editable').mediumInsert({
-          editor: editor
-      });
+    $('.editable').mediumInsert({
+      editor: editor
+    });
   });
 </script>
 ```
