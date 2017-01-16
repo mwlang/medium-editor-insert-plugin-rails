@@ -1,4 +1,4 @@
-# Medium Editor for Rails
+# Insert Plugin for Rails
 
 This gem integrates [Medium Editor Insert Plugin](https://github.com/orthes/medium-editor-insert-plugin) with Rails asset pipeline.
 
@@ -124,19 +124,19 @@ rails g scaffold Image title:string file:string
 rake db:migrate
 ```
 
-Add uploader to `/models/image.rb`
+Mount uploader to `/models/image.rb`
 ```ruby
 class Image < ActiveRecord::Base
   mount_uploader :file, ImageUploader
 end
 ```
 
-Add `updload` to `/config/routers.rb`
+Add `updload` endpoint to `/config/routers.rb`
 ```ruby
 post "images/upload" => "images#upload"
 ```
 
-Add `upload` to `/controllers/images_controller.rb`
+Add `upload` method to `/controllers/images_controller.rb`
 ```ruby
  def upload
     files = params.require(:files)
@@ -171,7 +171,7 @@ Add `upload` to `/controllers/images_controller.rb`
   end
 ```
 
-You must be enable to upload images using `/images/upload` path.
+Restart your app. You must be enable to upload images using `/images/upload` path.
 
 ## Contributing
 
