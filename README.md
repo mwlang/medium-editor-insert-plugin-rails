@@ -87,22 +87,23 @@ If you application has image uploading endpoint on `/images/upload`, plugin conf
     });
   });
 </script>
-
+```
 When upload path isn't specified, plugin stores image as binary data inside text.
 
-```
-
-### Add image uploading enpoint to Rails app
+## Add image uploading enpoint to Rails app
 
 You can quickly add image uploading endpoint to you app with **carrierwave** gem.
 
-1. Include **carrierwave** in your Rails project's Gemfile:
+Include **carrierwave** gem in your Rails project's Gemfile:
 
 ```ruby
 gem 'carrierwave', '~> 1.0'
 ```
+```bash
+bundle install
+```
 
-2. Add **carrierwave** to `/config/environment.rb`
+Add **carrierwave** to `/config/environment.rb`
 ```ruby
 # Load the Rails application.
 require File.expand_path('../application', __FILE__)
@@ -112,30 +113,30 @@ require 'carrierwave/orm/activerecord'
 Rails.application.initialize!
 ```
 
-3. Generate image uploader
+Generate image uploader
 ```bash
 rails generate uploader Image
 ```
 
-4. Create `Image` resource
+Create `Image` resource
 ```bash
 rails g scaffold Image title:string file:string
 rake db:migrate
 ```
 
-5. Add uploader to `/models/image.rb`
+Add uploader to `/models/image.rb`
 ```ruby
 class Image < ActiveRecord::Base
   mount_uploader :file, ImageUploader
 end
 ```
 
-6. Add `updload` to `/config/routers.rb`
+Add `updload` to `/config/routers.rb`
 ```ruby
 post "images/upload" => "images#upload"
 ```
 
-7. Add `upload` to `/controllers/images_controller.rb`
+Add `upload` to `/controllers/images_controller.rb`
 ```ruby
  def upload
     files = params.require(:files)
