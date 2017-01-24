@@ -18,4 +18,3 @@ tmp
 .idea/
 .DS*
 bower_components/*
-bower.json

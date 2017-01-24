@@ -1,12 +1,7 @@
 require 'rails'
-require 'medium-editor-insert-plugin-rails/version'
+require 'jquery-rails'
+require 'jquery-ui-rails'
+require 'jquery-fileupload-rails'
 
-module MediumEditorInsertPluginRails
-  module Rails
-    if ::Rails.version.to_s < '3.1'
-      require 'medium-editor-insert-plugin-rails/railtie'
-    else
-      require 'medium-editor-insert-plugin-rails/engine'
-    end
-  end
-end
+require 'medium_editor/insert_plugin/version'
+require 'medium_editor/insert_plugin/engine'

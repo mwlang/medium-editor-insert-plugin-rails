@@ -1,3 +1,2 @@
 require 'bundler/gem_tasks'
-import "lib/tasks/insert-plugin.rake"
-
+import "lib/tasks/bower.rake"

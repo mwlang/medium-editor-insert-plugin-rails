@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in medium-editor-insert-plugin-rails.gemspec
+gem 'medium-editor-engine', path: "/Users/mwlang/projects/medium/medium-editor-engine"
+
+# Specify your gem's dependencies in medium_editor/insert_plugin.gemspec
 gemspec

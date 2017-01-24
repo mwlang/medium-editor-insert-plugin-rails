@@ -1,4 +1,4 @@
-module MediumEditorInsertPluginRails
+module MediumEditor::InsertPlugin
   module Rails
     class Engine < ::Rails::Engine
     end
