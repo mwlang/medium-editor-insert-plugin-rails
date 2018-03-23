@@ -12,7 +12,7 @@ Include **medium_editor/insert_plugin** in your Rails project's Gemfile:
 
 ```ruby
 gem 'medium-editor-rails'
-gem 'medium_editor/insert_plugin'
+gem 'medium-editor-insert-plugin-rails'
 ```
 
 And then execute:
